@@ -22,8 +22,8 @@ if tabs == 'Exploratory Data Analysis':
     st.header("Basic Information and Statistics")
     st.write(df.info())
     st.write(df.describe())
-    st.write("Missing Values:")
-    st.write(df.isnull().sum())
+    # st.write("Missing Values:")
+    # st.write(df.isnull().sum())
 
     df['credit_score'] = df['credit_score'].fillna(df['credit_score'].median())
     df['state'] = df['state'].fillna(df['state'].mode()[0])
