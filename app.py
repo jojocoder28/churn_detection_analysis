@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
 from sklearn.preprocessing import LabelEncoder
-st.set_page_config(page_title="Customer Churn Prediction and EDA", page_icon=":guardsman:", layout="wide")
+st.set_page_config(page_title="Customer Churn Prediction and EDA", page_icon=":guardsman:")
 df = pd.read_csv('train.csv')
 rf = joblib.load('churn_model.pkl')
 
