@@ -4,6 +4,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
 from sklearn.preprocessing import LabelEncoder
+import google.generativeai as genai
+
+genai.configure(api_key="AIzaSyC1oWuMicF5Vm9SRGoBZdD_MY5bBskX1nA")
 st.set_page_config(page_title="Customer Churn Prediction and EDA", page_icon=":guardsman:")
 df = pd.read_csv('train.csv')
 rf = joblib.load('churn_model.pkl')
@@ -111,5 +114,11 @@ elif tabs == 'Churn Prediction':
         
         if prediction == 1:
             st.write("The customer is likely to churn.")
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            user_input_string = user_input.to_string(index=False)
+            prompt=user_input_string+". and the customer is churn. Now just give some personalized retention strategy for this customer. keep it concise and impactful."
+            response = model.generate_content(prompt)
+            st.write(response.text)
         else:
             st.write("The customer is unlikely to churn.")
+    
